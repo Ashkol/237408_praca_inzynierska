@@ -1,0 +1,60 @@
+﻿#pragma kernel Digging
+#pragma kernel Flatten
+#include "/Includes/Density.compute"
+
+// Sampling values
+float value;
+float radius;
+float3 diggingPoint;
+float3 diggingPointSample;
+float3 faceNormal;
+
+[numthreads(numThreads, numThreads, numThreads)]
+void Digging(int3 id : SV_DispatchThreadID)
+{
+
+	float3 pos = centre + id * spacing - boundsSize / 2;
+	float dotProduct = dot(pos - diggingPoint, faceNormal);
+
+	if (id.x >= numPointsPerAxis || id.y >= numPointsPerAxis || id.z >= numPointsPerAxis) {
+		return;
+	}
+	int index = indexFromCoord(id.x, id.y, id.z);
+
+	float finalVal = ((points[index].w + value * sign(dotProduct)) + 1) / 2;
+	finalVal = saturate(finalVal + value);
+	finalVal = (finalVal * 2) - 1;
+
+	if (length(diggingPoint - pos) < radius && finalVal > -1 && finalVal < 1)
+	{
+		points[index] = float4(points[index].x, points[index].y, points[index].z, finalVal);
+	}
+}
+
+[numthreads(numThreads, numThreads, numThreads)]
+void Flatten(int3 id : SV_DispatchThreadID)
+{
+	// slight corrections for better feel
+	value *= 3;
+
+	float3 pos = centre + id * spacing - boundsSize / 2;
+	// range of dotProduct -1 to - 1
+	float dotProduct = dot(normalize(diggingPoint - pos), faceNormal);
+
+	if (id.x >= numPointsPerAxis || id.y >= numPointsPerAxis || id.z >= numPointsPerAxis) {
+		return;
+	}
+	int index = indexFromCoord(id.x, id.y, id.z);
+
+	// finalVal range -1 to 1
+	float finalVal = ((points[index].w + value * sign(dotProduct)) + 0) / 1;
+	finalVal = saturate(finalVal);
+
+	if (length(diggingPoint - pos) < radius)
+	{
+		points[index] = float4(points[index].x, points[index].y, points[index].z, finalVal);
+	}
+}
+
+
+

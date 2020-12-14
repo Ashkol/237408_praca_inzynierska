@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1000265550879208829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1000265550879208817}
+  - component: {fileID: 1000265550879208818}
+  - component: {fileID: 1000265550879208819}
+  - component: {fileID: 1000265550879208828}
+  m_Layer: 0
+  m_Name: Map Generator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1000265550879208817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000265550879208829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1000265550879208818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000265550879208829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7de93f19cf70f43a439b180e7f79f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshGenerator: {fileID: 1000265550879208819}
+  densityGenerator: {fileID: 1000265550879208828}
+  autoUpdateInPlay: 0
+  loadMap: 1
+  saveMap: 1
+  boundsLength: 20
+  numPointsPerAxis: 30
+  numberOfChunks: {x: 1, y: 1, z: 1}
+  showBoundsGizmo: 1
+  boundsGizmoCol: {r: 0, g: 0, b: 1, a: 1}
+--- !u!114 &1000265550879208819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000265550879208829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d507ce4867e76fe4fb5ab056b3dbc53a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isoLevel: 0.5
+  fixedMapSize: 1
+  autoUpdateInPlay: 0
+  useMapSettings: 0
+  generateCollider: 1
+  chunkPrefab: {fileID: 1732116232779136103, guid: 942e37a590ec5564f9f3a6d040e3b5f1,
+    type: 3}
+  material: {fileID: 2100000, guid: f721334a6199dbd47b06903b117582ca, type: 2}
+  marchingCubeShader: {fileID: 7200000, guid: 4d5a6654f1f1f8d44bb6a481676d33c5, type: 3}
+  showBoundsGizmo: 1
+  boundsGizmoCol: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1000265550879208828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000265550879208829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f246934ab3d93b44292536f47641d33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  densityShader: {fileID: 7200000, guid: c68fd88666a7b7746b2a62eee3fa3631, type: 3}
+  seed: 6
+  numOctaves: 4
+  lacunarity: 0.7
+  persistence: 0.42
+  noiseScale: 2
+  noiseWeight: 8
+  floorOffset: 0
+  weightMultiplier: 5
+  closeEdges: 0
+  hardFloorHeight: 0
+  hardFloorWeight: 0
+  shaderParams: {x: 50, y: 0, z: 0, w: 0}
