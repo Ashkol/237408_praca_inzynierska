@@ -911,6 +911,11 @@ PrefabInstance:
       propertyPath: turnSpeed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3245251028049734742, guid: f954474e554de8f42ac88f68f1046cfe,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3245251028861005250, guid: f954474e554de8f42ac88f68f1046cfe,
         type: 3}
       propertyPath: m_Name
